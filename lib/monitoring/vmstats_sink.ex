@@ -15,16 +15,12 @@ defmodule Monitoring.VMStatsSink do
     "vmstats.memory.procs_used",
     "vmstats.memory.atom_used",
     "vmstats.memory.binary",
-    "vmstats.memory.ets"
-  ]
-  @counter_events [
+    "vmstats.memory.ets",
     "vmstats.io.bytes_in",
     "vmstats.io.bytes_out",
     "vmstats.gc.count",
     "vmstats.gc.words_reclaimed",
-    "vmstats.reductions"
-  ]
-  @timing_events [
+    "vmstats.reductions",
     "vmstats.vm_uptime",
     "vmstats.scheduler_wall_time.1.active",
     "vmstats.scheduler_wall_time.1.total",
@@ -62,8 +58,8 @@ defmodule Monitoring.VMStatsSink do
 
   use Monitoring.VMStatsTelemetryConnector,
     gauge_events: @gauge_events,
-    counter_events: @counter_events,
-    timing_events: @timing_events
+    counter_events: [],
+    timing_events: []
 
   def collect(:counter, key, value) do
     event_name = :erlang.iolist_to_binary(key)
@@ -76,8 +72,6 @@ defmodule Monitoring.VMStatsSink do
   end
 
   def collect(:timing, key, value) do
-    IO.inspect(key)
-    IO.inspect(value)
     event_name = :erlang.iolist_to_binary(key)
     :telemetry.execute(@vmstats_event_to_atom[event_name], %{value: value})
   end
