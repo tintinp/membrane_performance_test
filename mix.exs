@@ -14,15 +14,27 @@ defmodule MembranePerformanceTest.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      mod: {MembranePerformanceTestApplication, []},
+      extra_applications: [:logger, :runtime_tools, :observer, :wx]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:membrane_core, "~> 1.0"},
+      {:membrane_h264_ffmpeg_plugin, "~> 0.31.6"},
+      {:membrane_h26x_plugin, "~> 0.10.2"},
+      {:membrane_tee_plugin, "~> 0.12.0"},
+      {:membrane_file_plugin, "~> 0.17.0"},
+      {:membrane_fake_plugin, "~> 0.11.0"},
+      {:membrane_rtp_plugin, "~> 0.28.0"},
+      {:membrane_rtp_h264_plugin, "~> 0.19.1"},
+      {:recon, "~> 2.5"},
+      {:vmstats, "~> 2.4"},
+      {:telemetry, "~> 1.0"},
+      {:telemetry_metrics, "~> 0.6.1"},
+      {:telemetry_metrics_statsd, "~> 0.6.0"}
     ]
   end
 end
