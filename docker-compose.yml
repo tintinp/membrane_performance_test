@@ -8,6 +8,8 @@ services:
       - 8126:8126
       - 8080:80
   grafana:
+    depends_on:
+      - graphite-statsd
     image: grafana/grafana-oss
     ports:
       - 3000:3000

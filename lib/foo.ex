@@ -15,7 +15,7 @@ defmodule Foo do
 
   def handle_call(:emit, _from, state) do
     IO.puts("hello!")
-    :telemetry.execute([:my_app, :foo], %{value: 5}, %{from: "b", operation: "1"})
+    :telemetry.execute([:my_app, :foo], %{value: 5}, %{from: "a", operation: "1"})
     IO.puts("emitted!!")
     {:reply, :ok, state}
   end
