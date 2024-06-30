@@ -22,12 +22,184 @@
   "links": [],
   "panels": [
     {
+      "datasource": {
+        "type": "graphite",
+        "uid": "bdqcyqfab1dz4b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Source"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Filter"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Sink"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "11.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*))"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "A",
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*))"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*))"
+        }
+      ],
+      "title": "Element Count",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*)"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*)"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*)"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
       "collapsed": false,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 4
       },
       "id": 7,
       "panels": [],
@@ -98,7 +270,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 1
+        "y": 5
       },
       "id": 8,
       "options": {
@@ -202,7 +374,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 1
+        "y": 5
       },
       "id": 9,
       "options": {
@@ -266,7 +438,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 9
+        "y": 13
       },
       "id": 5,
       "panels": [],
@@ -337,7 +509,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 10
+        "y": 14
       },
       "id": 2,
       "options": {
@@ -431,7 +603,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 14
       },
       "id": 3,
       "options": {
@@ -508,8 +680,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -525,7 +696,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 18
+        "y": 22
       },
       "id": 1,
       "options": {
@@ -622,8 +793,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -656,7 +826,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 18
+        "y": 22
       },
       "id": 4,
       "options": {
@@ -743,8 +913,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -773,7 +942,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 26
+        "y": 30
       },
       "id": 6,
       "options": {
@@ -818,6 +987,6 @@
   "timezone": "browser",
   "title": "VM Stats",
   "uid": "edqd0g10p5khsb",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }

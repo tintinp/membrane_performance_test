@@ -8,7 +8,9 @@ defmodule MembranePerformanceTestApplication do
        metrics: Monitoring.VMStatsSink.metrics() ++ Monitoring.ReconMetrics.metrics()},
       {Task.Supervisor, name: ReconMonitoring.TaskSupervisor},
       {Monitoring.ReconVmMonitoring, name: Monitoring.ReconVmMonitoring},
-      {Foo, name: Foo}
+      # Membrane.Pipeline.Simple
+      # {Membrane.Pipeline.Series, %{filter_count: 100}}
+      {Membrane.Pipeline.Parallel, %{parallel_count: 100}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

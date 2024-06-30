@@ -14,8 +14,13 @@ defmodule Membrane.TestElement.BufferPushSource do
     ],
     push_interval: [
       spec: pos_integer(),
-      description: "push buffer every push_interval in ms",
+      description: "Interval to push buffer in ms. Default 1000 ms",
       default: 1000
+    ],
+    buffer_size: [
+      spec: pos_integer(),
+      description: "Size of buffer to push in bytes. Default: 1024 bytes",
+      default: 1_024
     ]
   )
 
@@ -26,7 +31,13 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   @impl true
   def handle_init(_context, options) do
-    {[], %{group: options.group, id: options.id, push_interval: options.push_interval}}
+    {[],
+     %{
+       group: options.group,
+       id: options.id,
+       push_interval: options.push_interval,
+       buffer_size: options.buffer_size
+     }}
   end
 
   @impl true
@@ -48,14 +59,14 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   def handle_info(:push_buffer, _ctx, state) do
     push_buffer(state.push_interval)
-    {[buffer: {:output, %Buffer{payload: create_100kb_buffer()}}], state}
+    {[buffer: {:output, %Buffer{payload: create_buffer(state.buffer_size)}}], state}
   end
 
   defp push_buffer(push_interval) do
     Process.send_after(self(), :push_buffer, push_interval)
   end
 
-  defp create_100kb_buffer() do
-    :binary.copy(<<0>>, 1_024 * 1_024)
+  defp create_buffer(buffer_size) do
+    :binary.copy(<<0>>, buffer_size)
   end
 end

@@ -75,6 +75,7 @@ defmodule Monitoring.ReconMetrics do
   ]
   """
   def monitor_process_info(pid, tag) do
+    # IO.puts("calling for #{inspect(tag)}")
     metric_tag = %{group: tag.group, id: tag.id}
     info = :recon.info(pid)
     {:binary_memory, binary_memory} = :recon.info(pid, :binary_memory)
@@ -83,12 +84,12 @@ defmodule Monitoring.ReconMetrics do
     gc = Keyword.get(mem_used, :garbage_collection)
     memory = Keyword.get(mem_used, :memory)
     message_queue_len = Keyword.get(mem_used, :message_queue_len)
-    heap_size = Keyword.get(mem_used, :heap_size)
+    _heap_size = Keyword.get(mem_used, :heap_size)
     total_heap_size = Keyword.get(mem_used, :total_heap_size)
-    min_bin_vheap_size = Keyword.get(gc, :min_bin_vheap_size)
-    min_heap_size = Keyword.get(gc, :min_heap_size)
-    fullsweep_after = Keyword.get(gc, :fullsweep_after)
-    minor_gcs = Keyword.get(gc, :minor_gcs)
+    _min_bin_vheap_size = Keyword.get(gc, :min_bin_vheap_size)
+    _min_heap_size = Keyword.get(gc, :min_heap_size)
+    _fullsweep_after = Keyword.get(gc, :fullsweep_after)
+    _minor_gcs = Keyword.get(gc, :minor_gcs)
     reductions = Keyword.get(Keyword.get(info, :work), :reductions)
 
     :telemetry.execute(
@@ -107,11 +108,11 @@ defmodule Monitoring.ReconMetrics do
       metric_tag
     )
 
-    :telemetry.execute(
-      [:recon, :process, :memory_used, :heap_size],
-      %{value: heap_size},
-      metric_tag
-    )
+    # :telemetry.execute(
+    #   [:recon, :process, :memory_used, :heap_size],
+    #   %{value: heap_size},
+    #   metric_tag
+    # )
 
     :telemetry.execute(
       [:recon, :process, :memory_used, :total_heap_size],
@@ -121,31 +122,31 @@ defmodule Monitoring.ReconMetrics do
       metric_tag
     )
 
-    :telemetry.execute(
-      [:recon, :process, :memory_used, :garbage_collection, :min_bin_vheap_size],
-      %{
-        value: min_bin_vheap_size
-      },
-      metric_tag
-    )
+    # :telemetry.execute(
+    #   [:recon, :process, :memory_used, :garbage_collection, :min_bin_vheap_size],
+    #   %{
+    #     value: min_bin_vheap_size
+    #   },
+    #   metric_tag
+    # )
 
-    :telemetry.execute(
-      [:recon, :process, :memory_used, :garbage_collection, :min_heap_size],
-      %{value: min_heap_size},
-      metric_tag
-    )
+    # :telemetry.execute(
+    #   [:recon, :process, :memory_used, :garbage_collection, :min_heap_size],
+    #   %{value: min_heap_size},
+    #   metric_tag
+    # )
 
-    :telemetry.execute(
-      [:recon, :process, :memory_used, :garbage_collection, :fullsweep_after],
-      %{
-        value: fullsweep_after
-      },
-      metric_tag
-    )
+    # :telemetry.execute(
+    #   [:recon, :process, :memory_used, :garbage_collection, :fullsweep_after],
+    #   %{
+    #     value: fullsweep_after
+    #   },
+    #   metric_tag
+    # )
 
-    :telemetry.execute([:recon, :process, :memory_used, :garbage_collection, :minor_gcs], %{
-      value: minor_gcs
-    })
+    # :telemetry.execute([:recon, :process, :memory_used, :garbage_collection, :minor_gcs], %{
+    #   value: minor_gcs
+    # })
 
     :telemetry.execute([:recon, :process, :work, :reductions], %{value: reductions}, metric_tag)
   end

@@ -1,5 +1,6 @@
-defmodule Membrane.TestElement.BufferSink do
-  use Membrane.Sink
+defmodule Membrane.TestElement.BufferFilter do
+  use Membrane.Filter
+  alias Membrane.Logger
   alias Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
@@ -23,6 +24,11 @@ defmodule Membrane.TestElement.BufferSink do
     accepted_format: _any
   )
 
+  def_output_pad(:output,
+    flow_control: :auto,
+    accepted_format: _any
+  )
+
   @impl true
   def handle_init(_context, options) do
     {[], %{group: options.group, id: options.id, delay: options.delay}}
@@ -40,14 +46,12 @@ defmodule Membrane.TestElement.BufferSink do
   end
 
   @impl true
-  def handle_playing(_context, state) do
-    # {[demand: {:input, 1}], state}
-    {[], state}
-  end
+  def handle_buffer(:input, buffer, _context, state) do
+    Logger.debug(
+      "#{inspect(state.id)} Received buffer of size #{inspect(byte_size(buffer.payload))} bytes"
+    )
 
-  @impl true
-  def handle_buffer(:input, _buffer, _context, state) do
     :timer.sleep(state.delay)
-    {[], state}
+    {[buffer: {:output, buffer}], state}
   end
 end
