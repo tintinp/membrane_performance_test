@@ -10,4 +10,4 @@ config :vmstats,
   interval: 3000
 
 config :membrane_performance_test, :vm_monitoring, interval: 3000
-config :membrane_performance_test, :process_monitoring, interval: 3000
+config :membrane_performance_test, :process_monitoring, interval: 1000

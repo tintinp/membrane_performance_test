@@ -32,7 +32,7 @@ defmodule Foo do
   # Server handler
 
   def init(_) do
-    collect_process_info()
+    # collect_process_info()
     {:ok, %{buffer: []}}
   end
 

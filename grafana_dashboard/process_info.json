@@ -18,13 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqbmk35toef4b"
+        "uid": "fdqcsweygo0e8d"
       },
       "fieldConfig": {
         "defaults": {
@@ -90,8 +90,10 @@
       "id": 4,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -110,17 +112,14 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.memory.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.memory.value.*.*"
         }
       ],
       "title": "Total Memory Used",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -185,8 +184,10 @@
       "id": 7,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -203,17 +204,14 @@
             "uid": "bdqbmk35toef4b"
           },
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.binary_memory.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.binary_memory.value.*.*"
         }
       ],
       "title": "Binary Memory Used",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -311,17 +309,14 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "stats.gauges.recon.process.memory_used.heap_size.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.heap_size.value.*.*"
         }
       ],
       "title": "Heap Size",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -418,17 +413,14 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.total_heap_size.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.total_heap_size.value.*.*"
         }
       ],
       "title": "Total Heap Size",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -510,17 +502,14 @@
             "uid": "bdqbmk35toef4b"
           },
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.message_queue_len.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.message_queue_len.value.*.*"
         }
       ],
       "title": "Message Queue Length",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -615,17 +604,14 @@
             "uid": "bdqbmk35toef4b"
           },
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.garbage_collection.*.value.Foo.*"
+          "target": "stats.gauges.recon.process.memory_used.garbage_collection.*.value.*.*"
         }
       ],
       "title": "Garbage Collection",
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -683,7 +669,7 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
+        "x": 0,
         "y": 24
       },
       "id": 5,
@@ -707,14 +693,13 @@
             "uid": "bdqbmk35toef4b"
           },
           "refId": "A",
-          "target": "stats.gauges.recon.process.work.reductions.value.Foo.*"
+          "target": "stats.gauges.recon.process.work.reductions.value.*.*"
         }
       ],
       "title": "Reductions",
       "type": "timeseries"
     }
   ],
-  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
@@ -729,6 +714,6 @@
   "timezone": "browser",
   "title": "Process Info",
   "uid": "ddqc5ila1sb28c",
-  "version": 11,
+  "version": 5,
   "weekStart": ""
 }

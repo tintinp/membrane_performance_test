@@ -7,6 +7,8 @@ services:
       - 8125:8125/udp
       - 8126:8126
       - 8080:80
+    volumes:
+      - ./graphite_config/:/opt/statsd/config
   grafana:
     depends_on:
       - graphite-statsd
