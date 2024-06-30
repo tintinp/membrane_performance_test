@@ -10,6 +10,11 @@ defmodule Membrane.TestElement.BufferSink do
     id: [
       spec: String.t(),
       description: "Unique element id"
+    ],
+    delay: [
+      spec: pos_integer(),
+      description: "handle_buffer delay in ms",
+      default: 0
     ]
   )
 
@@ -20,7 +25,7 @@ defmodule Membrane.TestElement.BufferSink do
 
   @impl true
   def handle_init(_context, options) do
-    {[], %{group: options.group, id: options.id}}
+    {[], %{group: options.group, id: options.id, delay: options.delay}}
   end
 
   @impl true
@@ -44,7 +49,7 @@ defmodule Membrane.TestElement.BufferSink do
   def handle_buffer(:input, buffer, _context, state) do
     IO.puts("Got buffer #{inspect(byte_size(buffer.payload))}")
     IO.puts("sleeping")
-    :timer.sleep(3000)
+    :timer.sleep(state.delay)
     IO.puts("sleeping done")
     {[], state}
   end

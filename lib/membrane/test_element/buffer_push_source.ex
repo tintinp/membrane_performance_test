@@ -11,6 +11,11 @@ defmodule Membrane.TestElement.BufferPushSource do
     id: [
       spec: String.t(),
       description: "Unique element id"
+    ],
+    push_interval: [
+      spec: pos_integer(),
+      description: "push buffer every push_interval in ms",
+      default: 1000
     ]
   )
 
@@ -21,7 +26,7 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   @impl true
   def handle_init(_context, options) do
-    {[], %{group: options.group, id: options.id}}
+    {[], %{group: options.group, id: options.id, push_interval: options.push_interval}}
   end
 
   @impl true
@@ -37,17 +42,17 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   @impl true
   def handle_playing(_ctx, state) do
-    push_buffer()
+    push_buffer(state.push_interval)
     {[stream_format: {:output, %Membrane.Format.RawBuffer{format: :bytes}}], state}
   end
 
   def handle_info(:push_buffer, _ctx, state) do
-    push_buffer()
+    push_buffer(state.push_interval)
     {[buffer: {:output, %Buffer{payload: create_100kb_buffer()}}], state}
   end
 
-  defp push_buffer() do
-    Process.send_after(self(), :push_buffer, 1000)
+  defp push_buffer(push_interval) do
+    Process.send_after(self(), :push_buffer, push_interval)
   end
 
   defp create_100kb_buffer() do

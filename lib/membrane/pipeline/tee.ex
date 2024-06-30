@@ -1,4 +1,4 @@
-defmodule Membrane.Pipeline.Simple do
+defmodule Membrane.Pipeline.Tee do
   use Membrane.Pipeline
 
   @impl true
@@ -6,13 +6,12 @@ defmodule Membrane.Pipeline.Simple do
     spec = [
       child(:buffer_push_source, %Membrane.TestElement.BufferPushSource{
         group: "BufferPushSource",
-        id: "1",
-        push_interval: 1000
+        id: "1"
       })
+      |> child(:tee, Membrane.Tee.Parallel)
       |> child(:output, %Membrane.TestElement.BufferSink{
         group: "BufferSink",
-        id: "1",
-        delay: 0
+        id: "1"
       })
     ]
 

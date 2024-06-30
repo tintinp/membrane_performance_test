@@ -1,4 +1,4 @@
-defmodule Membrane.Pipeline.Simple do
+defmodule Membrane.Pipeline.SimpleDelay do
   use Membrane.Pipeline
 
   @impl true
@@ -12,7 +12,7 @@ defmodule Membrane.Pipeline.Simple do
       |> child(:output, %Membrane.TestElement.BufferSink{
         group: "BufferSink",
         id: "1",
-        delay: 0
+        delay: 3000
       })
     ]
 
