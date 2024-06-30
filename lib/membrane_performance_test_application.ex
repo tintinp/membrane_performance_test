@@ -4,7 +4,10 @@ defmodule MembranePerformanceTestApplication do
   @impl true
   def start(_type, _args) do
     children = [
-      {TelemetryMetricsStatsd, metrics: Monitoring.VMStatsSink.metrics()},
+      {TelemetryMetricsStatsd,
+       metrics: Monitoring.VMStatsSink.metrics() ++ Monitoring.ReconMetrics.metrics()},
+      {Task.Supervisor, name: ReconMonitoring.TaskSupervisor},
+      {Monitoring.ReconVmMonitoring, name: Monitoring.ReconVmMonitoring},
       {Foo, name: Foo}
     ]
 
