@@ -18,13 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
       "datasource": {
         "type": "graphite",
-        "uid": "fdqcsweygo0e8d"
+        "uid": "bdqcyqfab1dz4b"
       },
       "fieldConfig": {
         "defaults": {
@@ -654,8 +654,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -700,13 +699,14 @@
       "type": "timeseries"
     }
   ],
+  "refresh": "5s",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -714,6 +714,6 @@
   "timezone": "browser",
   "title": "Process Info",
   "uid": "ddqc5ila1sb28c",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }

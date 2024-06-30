@@ -1,6 +1,6 @@
 defmodule Membrane.TestElement.BufferSink do
   use Membrane.Sink
-  use Membrane.Monitoring.ReconProcessMonitoring
+  alias Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
     group: [
@@ -25,7 +25,12 @@ defmodule Membrane.TestElement.BufferSink do
 
   @impl true
   def handle_setup(_ctx, state) do
-    collect_process_info()
+    ReconProcessMonitoring.start_link(%ReconProcessMonitoring{
+      pid: self(),
+      group: state.group,
+      id: state.id
+    })
+
     {[], state}
   end
 
@@ -37,6 +42,10 @@ defmodule Membrane.TestElement.BufferSink do
 
   @impl true
   def handle_buffer(:input, buffer, _context, state) do
+    IO.puts("Got buffer #{inspect(byte_size(buffer.payload))}")
+    IO.puts("sleeping")
+    :timer.sleep(3000)
+    IO.puts("sleeping done")
     {[], state}
   end
 end

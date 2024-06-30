@@ -1,7 +1,7 @@
 defmodule Membrane.TestElement.BufferPushSource do
   use Membrane.Source
   alias Membrane.Buffer
-  use Membrane.Monitoring.ReconProcessMonitoring
+  alias Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
     group: [
@@ -26,7 +26,12 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   @impl true
   def handle_setup(_ctx, state) do
-    collect_process_info()
+    ReconProcessMonitoring.start_link(%ReconProcessMonitoring{
+      pid: self(),
+      group: state.group,
+      id: state.id
+    })
+
     {[], state}
   end
 
@@ -38,10 +43,14 @@ defmodule Membrane.TestElement.BufferPushSource do
 
   def handle_info(:push_buffer, _ctx, state) do
     push_buffer()
-    {[buffer: {:output, %Buffer{payload: <<1>>}}], state}
+    {[buffer: {:output, %Buffer{payload: create_100kb_buffer()}}], state}
   end
 
   defp push_buffer() do
     Process.send_after(self(), :push_buffer, 1000)
+  end
+
+  defp create_100kb_buffer() do
+    :binary.copy(<<0>>, 1_024 * 1_024)
   end
 end

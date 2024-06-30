@@ -18,201 +18,26 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 2,
   "links": [],
   "panels": [
     {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
+      "collapsed": false,
       "gridPos": {
-        "h": 8,
-        "w": 12,
+        "h": 1,
+        "w": 24,
         "x": 0,
-        "y": 0
-      },
-      "id": 4,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "bdqbmk35toef4b"
-          },
-          "hide": false,
-          "refCount": 0,
-          "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.memory.value.Foo.*"
-        }
-      ],
-      "title": "Total Memory Used",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
         "y": 0
       },
       "id": 7,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "bdqbmk35toef4b"
-          },
-          "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.binary_memory.value.Foo.*"
-        }
-      ],
-      "title": "Binary Memory Used",
-      "type": "timeseries"
+      "panels": [],
+      "title": "Recon",
+      "type": "row"
     },
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqbmk35toef4b"
+        "uid": "bdqcyqfab1dz4b"
       },
       "fieldConfig": {
         "defaults": {
@@ -267,28 +92,15 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*memory_used.memory.value/"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 1
       },
-      "id": 6,
+      "id": 8,
       "options": {
         "legend": {
           "calcs": [],
@@ -306,21 +118,165 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "bdqbmk35toef4b"
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "stats.gauges.recon_alloc.memory.allocated.value"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
           },
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "stats.gauges.recon.process.memory_used.heap_size.value.Foo.*"
+          "target": "stats.gauges.recon_alloc.memory.used.value"
         }
       ],
-      "title": "Heap Size",
+      "title": "Memory Alloc",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqbmk35toef4b"
+        "uid": "bdqcyqfab1dz4b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 9,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "stats.gauges.recon_alloc.memory.allocated.value"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "stats.gauges.recon_alloc.memory.used.value"
+        }
+      ],
+      "title": "Memory Usage",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Usage",
+            "binary": {
+              "left": "stats.gauges.recon_alloc.memory.used.value",
+              "operator": "/",
+              "right": "stats.gauges.recon_alloc.memory.allocated.value"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 5,
+      "panels": [],
+      "title": "VMStats",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "bdqcyqfab1dz4b"
       },
       "fieldConfig": {
         "defaults": {
@@ -375,119 +331,13 @@
           },
           "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*memory_used.memory.value/"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 8
-      },
-      "id": 1,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "maxHeight": 600,
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "graphite",
-            "uid": "bdqbmk35toef4b"
-          },
-          "refCount": 0,
-          "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.total_heap_size.value.Foo.*"
-        }
-      ],
-      "title": "Total Heap Size",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "graphite",
-        "uid": "bdqbmk35toef4b"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisBorderShow": false,
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 0,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "auto",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          }
-        },
         "overrides": []
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 16
+        "y": 10
       },
       "id": 2,
       "options": {
@@ -507,19 +357,20 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "bdqbmk35toef4b"
+            "uid": "bdqcyqfab1dz4b"
           },
+          "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.message_queue_len.value.Foo.*"
+          "target": "stats.gauges.vmstats.memory.binary.value"
         }
       ],
-      "title": "Message Queue Length",
+      "title": "VM Binary Memory",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqbmk35toef4b"
+        "uid": "bdqcyqfab1dz4b"
       },
       "fieldConfig": {
         "defaults": {
@@ -571,28 +422,16 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "decbytes"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byRegexp",
-              "options": "/.*min_heap_size/"
-            },
-            "properties": [
-              {
-                "id": "custom.axisPlacement",
-                "value": "right"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 16
+        "y": 10
       },
       "id": 3,
       "options": {
@@ -612,19 +451,20 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "bdqbmk35toef4b"
+            "uid": "bdqcyqfab1dz4b"
           },
+          "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.recon.process.memory_used.garbage_collection.*.value.Foo.*"
+          "target": "stats.gauges.vmstats.memory.total.value"
         }
       ],
-      "title": "Garbage Collection",
+      "title": "VM Total Memory",
       "type": "timeseries"
     },
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqbmk35toef4b"
+        "uid": "bdqcyqfab1dz4b"
       },
       "fieldConfig": {
         "defaults": {
@@ -676,17 +516,18 @@
                 "value": 80
               }
             ]
-          }
+          },
+          "unit": "decbytes"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 12,
-        "y": 24
+        "x": 0,
+        "y": 18
       },
-      "id": 5,
+      "id": 1,
       "options": {
         "legend": {
           "calcs": [],
@@ -704,13 +545,261 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "bdqbmk35toef4b"
+            "uid": "bdqcyqfab1dz4b"
           },
+          "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.recon.process.work.reductions.value.Foo.*"
+          "target": "stats.gauges.vmstats.memory.atom_used.value"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "stats.gauges.vmstats.memory.ets.value"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "C",
+          "target": "stats.gauges.vmstats.memory.procs_used.value"
         }
       ],
-      "title": "Reductions",
+      "title": "VM Memory (other)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "bdqcyqfab1dz4b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "stats.gauges.vmstats.gc.count.value"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "stats.gauges.vmstats.gc.words_reclaimed.value"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "stats.gauges.vmstats.gc.count.value"
+        }
+      ],
+      "title": "Garbage Collector",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "bdqcyqfab1dz4b"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "stats.gauges.vmstats.io.bytes_out.value"
+            },
+            "properties": [
+              {
+                "id": "custom.axisPlacement",
+                "value": "right"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 26
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "maxHeight": 600,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "refId": "A",
+          "target": "stats.gauges.vmstats.io.*.value"
+        }
+      ],
+      "title": "IO",
       "type": "timeseries"
     }
   ],
@@ -721,14 +810,14 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "browser",
-  "title": "Process Info",
-  "uid": "ddqc5ila1sb28c",
-  "version": 11,
+  "title": "VM Stats",
+  "uid": "edqd0g10p5khsb",
+  "version": 5,
   "weekStart": ""
 }

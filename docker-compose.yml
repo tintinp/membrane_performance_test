@@ -15,3 +15,8 @@ services:
     image: grafana/grafana-oss
     ports:
       - 3000:3000
+    # Uncomment to use custom config
+    # volumes:
+    #   - ./grafana_config/:/etc/grafana/
+    # environment:
+    #   - GF_PATHS_CONFIG=/etc/grafana/custom.ini
