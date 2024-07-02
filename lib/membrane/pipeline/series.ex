@@ -10,10 +10,10 @@ defmodule Membrane.Pipeline.Series do
   def handle_init(_context, options) do
     spec = [
       child(:buffer_push_source, %Membrane.TestElement.BufferPushSource{
-        group: "BufferPushSource",
+        group: "PushSource",
         id: "1",
-        push_interval: 1000,
-        buffer_size: 1024 * 1024
+        push_interval: options.source_push_interval,
+        buffer_size: options.buffer_size
       })
     ]
 
@@ -22,7 +22,7 @@ defmodule Membrane.Pipeline.Series do
     sink = [
       get_child({:buffer_filter, options.filter_count})
       |> child(:buffer_sink, %Membrane.TestElement.BufferSink{
-        group: "BufferSink",
+        group: "Sink",
         id: "1",
         delay: 0
       })
@@ -36,8 +36,12 @@ defmodule Membrane.Pipeline.Series do
 
     first_filter = [
       get_child(:buffer_push_source)
+      |> child({:buffer_passthrough, 1}, %Membrane.TestElement.BufferPassthrough{
+        group: "Passthrough",
+        id: Integer.to_string(1)
+      })
       |> child({:buffer_filter, 1}, %Membrane.TestElement.BufferFilter{
-        group: "BufferFilter",
+        group: "Filter",
         id: Integer.to_string(1),
         delay: 0
       })
@@ -46,8 +50,12 @@ defmodule Membrane.Pipeline.Series do
     filters =
       Enum.map(2..n, fn id ->
         get_child({:buffer_filter, id - 1})
+        |> child({:buffer_passthrough, id}, %Membrane.TestElement.BufferPassthrough{
+          group: "Passthrough",
+          id: Integer.to_string(id)
+        })
         |> child({:buffer_filter, id}, %Membrane.TestElement.BufferFilter{
-          group: "BufferFilter",
+          group: "Filter",
           id: Integer.to_string(id),
           delay: 0
         })

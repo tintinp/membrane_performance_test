@@ -1,6 +1,5 @@
 defmodule Membrane.TestElement.BufferFilter do
   use Membrane.Filter
-  alias Membrane.Logger
   alias Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
@@ -31,7 +30,15 @@ defmodule Membrane.TestElement.BufferFilter do
 
   @impl true
   def handle_init(_context, options) do
-    {[], %{group: options.group, id: options.id, delay: options.delay}}
+    {
+      [],
+      %{
+        group: options.group,
+        id: options.id,
+        delay: options.delay,
+        buffer_metric_emitter: nil
+      }
+    }
   end
 
   @impl true
@@ -42,13 +49,19 @@ defmodule Membrane.TestElement.BufferFilter do
       id: state.id
     })
 
-    {[], state}
+    {:ok, pid} = Monitoring.BufferMetricEmitter.start_link(%{group: state.group, id: state.id})
+
+    {[], %{state | buffer_metric_emitter: pid}}
   end
 
   @impl true
   def handle_buffer(:input, buffer, _context, state) do
-    Logger.debug(
-      "#{inspect(state.id)} Received buffer of size #{inspect(byte_size(buffer.payload))} bytes"
+    # Logger.debug(
+    #   "#{inspect(state.id)} Received buffer of size #{inspect(byte_size(buffer.payload))} bytes"
+    # )
+    Monitoring.BufferMetricEmitter.record_data(
+      state.buffer_metric_emitter,
+      byte_size(buffer.payload)
     )
 
     :timer.sleep(state.delay)

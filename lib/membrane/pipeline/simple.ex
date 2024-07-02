@@ -10,18 +10,22 @@ defmodule Membrane.Pipeline.Simple do
   def handle_init(_context, _options) do
     spec = [
       child(:buffer_push_source, %Membrane.TestElement.BufferPushSource{
-        group: "BufferPushSource",
+        group: "PushSource",
         id: "1",
         push_interval: 1000,
         buffer_size: 1024 * 1024
       })
+      |> child(:buffer_passthrough, %Membrane.TestElement.BufferPassthrough{
+        group: "Passthrough",
+        id: "1"
+      })
       |> child(:buffer_filter, %Membrane.TestElement.BufferFilter{
-        group: "BufferFilter",
+        group: "Filter",
         id: "1",
         delay: 0
       })
       |> child(:buffer_sink, %Membrane.TestElement.BufferSink{
-        group: "BufferSink",
+        group: "Sink",
         id: "1",
         delay: 0
       })

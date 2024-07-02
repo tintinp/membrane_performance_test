@@ -10,10 +10,10 @@ defmodule Membrane.Pipeline.Parallel do
   def handle_init(_context, options) do
     spec = [
       child(:buffer_push_source, %Membrane.TestElement.BufferPushSource{
-        group: "BufferPushSource",
+        group: "PushSource",
         id: "1",
-        push_interval: 1000,
-        buffer_size: 1024 * 1024
+        push_interval: options.source_push_interval,
+        buffer_size: options.buffer_size
       })
       |> child(:tee, Membrane.Tee.Parallel)
     ]
@@ -26,13 +26,17 @@ defmodule Membrane.Pipeline.Parallel do
   defp create_parallel(n) when n > 0 do
     Enum.map(1..n, fn id ->
       get_child(:tee)
+      |> child({:buffer_passthrough, id}, %Membrane.TestElement.BufferPassthrough{
+        group: "Passthrough",
+        id: Integer.to_string(id)
+      })
       |> child({:buffer_filter, id}, %Membrane.TestElement.BufferFilter{
-        group: "BufferFilter",
+        group: "Filter",
         id: Integer.to_string(id),
         delay: 0
       })
       |> child({:buffer_sink, id}, %Membrane.TestElement.BufferSink{
-        group: "BufferSink",
+        group: "Sink",
         id: Integer.to_string(id),
         delay: 0
       })
