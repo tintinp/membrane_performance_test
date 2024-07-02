@@ -1,4 +1,4 @@
-defmodule MembranePerformanceTest.Membrane.PromEx do
+defmodule MembranePerformanceTest.PromEx do
   @moduledoc """
   Be sure to add the following to finish setting up PromEx:
 
@@ -6,7 +6,7 @@ defmodule MembranePerformanceTest.Membrane.PromEx do
      configure the necessary bit of PromEx. Be sure to check out `PromEx.Config` for
      more details regarding configuring PromEx:
      ```
-     config :membrane_performance_test, MembranePerformanceTest.Membrane.PromEx,
+     config :membrane_performance_test, MembranePerformanceTest.PromEx,
        disabled: false,
        manual_metrics_start_delay: :no_delay,
        drop_metrics_groups: [],
@@ -21,7 +21,7 @@ defmodule MembranePerformanceTest.Membrane.PromEx do
      ```
      def start(_type, _args) do
        children = [
-         MembranePerformanceTest.Membrane.PromEx,
+         MembranePerformanceTest.PromEx,
 
          ...
        ]
@@ -41,7 +41,7 @@ defmodule MembranePerformanceTest.Membrane.PromEx do
 
        ...
 
-       plug PromEx.Plug, prom_ex_module: MembranePerformanceTest.Membrane.PromEx
+       plug PromEx.Plug, prom_ex_module: MembranePerformanceTest.PromEx
 
        ...
      end
@@ -98,7 +98,7 @@ defmodule MembranePerformanceTest.Membrane.PromEx do
 
       # Add your dashboard definitions here with the format: {:otp_app, "path_in_priv"}
       # {:membrane_performance_test, "/grafana_dashboards/user_metrics.json"}
-      {:membrane_performance_test, "/grafana_dashboards/process_info.json"}
+      {:membrane_performance_test, "/grafana_dashboards/membrane_process_metrics.json"}
     ]
   end
 end

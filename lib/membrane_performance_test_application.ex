@@ -5,7 +5,7 @@ defmodule MembranePerformanceTestApplication do
   def start(_type, _args) do
     children = [
       # {Plug.Cowboy, scheme: :http, plug: Monitoring.Router, options: [port: cowboy_port()]},
-      MembranePerformanceTest.Membrane.PromEx,
+      MembranePerformanceTest.PromEx,
       # {TelemetryMetricsStatsd,
       #  metrics:
       #    MembranePerformanceTest.Monitoring.VMStatsSink.metrics() ++

@@ -15,7 +15,7 @@ config :membrane_performance_test, :process_monitoring, interval: 3000
 config :membrane_performance_test,
   cowboy_port: 4000
 
-config :membrane_performance_test, MembranePerformanceTest.Membrane.PromEx,
+config :membrane_performance_test, MembranePerformanceTest.PromEx,
   disabled: false,
   manual_metrics_start_delay: :no_delay,
   drop_metrics_groups: [],
