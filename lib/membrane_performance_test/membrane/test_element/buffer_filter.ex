@@ -1,6 +1,6 @@
-defmodule Membrane.TestElement.BufferFilter do
+defmodule MembranePerformanceTest.Membrane.TestElement.BufferFilter do
   use Membrane.Filter
-  alias Membrane.Monitoring.ReconProcessMonitoring
+  alias MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
     group: [
@@ -49,7 +49,11 @@ defmodule Membrane.TestElement.BufferFilter do
       id: state.id
     })
 
-    {:ok, pid} = Monitoring.BufferMetricEmitter.start_link(%{group: state.group, id: state.id})
+    {:ok, pid} =
+      MembranePerformanceTest.Monitoring.BufferMetricEmitter.start_link(%{
+        group: state.group,
+        id: state.id
+      })
 
     {[], %{state | buffer_metric_emitter: pid}}
   end
@@ -59,7 +63,7 @@ defmodule Membrane.TestElement.BufferFilter do
     # Logger.debug(
     #   "#{inspect(state.id)} Received buffer of size #{inspect(byte_size(buffer.payload))} bytes"
     # )
-    Monitoring.BufferMetricEmitter.record_data(
+    MembranePerformanceTest.Monitoring.BufferMetricEmitter.record_data(
       state.buffer_metric_emitter,
       byte_size(buffer.payload)
     )

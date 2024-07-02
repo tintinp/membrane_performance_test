@@ -1,4 +1,4 @@
-defmodule Monitoring.BufferMetricEmitter do
+defmodule MembranePerformanceTest.Monitoring.BufferMetricEmitter do
   use GenServer
   import Telemetry.Metrics
 

@@ -1,4 +1,4 @@
-defmodule MembranePerformanceTest.MixProject do
+defmodule MembranePerformanceTest.Membrane.MixProject do
   use Mix.Project
 
   def project do
@@ -33,8 +33,11 @@ defmodule MembranePerformanceTest.MixProject do
       {:recon, "~> 2.5"},
       {:vmstats, "~> 2.4"},
       {:telemetry, "~> 1.0"},
-      {:telemetry_metrics, "~> 0.6.1"},
-      {:telemetry_metrics_statsd, "~> 0.6.0"}
+      {:telemetry_metrics, "~> 1.0", override: true},
+      {:telemetry_poller, "~> 1.0"},
+      {:telemetry_metrics_statsd, "~> 0.6.0"},
+      {:plug_cowboy, "~> 2.7"},
+      {:prom_ex, "~> 1.9.0"}
     ]
   end
 end

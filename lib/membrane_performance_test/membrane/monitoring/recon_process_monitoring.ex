@@ -1,4 +1,4 @@
-defmodule Membrane.Monitoring.ReconProcessMonitoring do
+defmodule MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring do
   use GenServer
 
   @interval Application.compile_env(
@@ -13,13 +13,15 @@ defmodule Membrane.Monitoring.ReconProcessMonitoring do
 
   # Client API
 
-  def start_link(%Membrane.Monitoring.ReconProcessMonitoring{} = server_options) do
+  def start_link(
+        %MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring{} = server_options
+      ) do
     GenServer.start_link(__MODULE__, server_options, [])
   end
 
   # Server handler
   @impl true
-  def init(%Membrane.Monitoring.ReconProcessMonitoring{} = server_options) do
+  def init(%MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring{} = server_options) do
     {
       :ok,
       %{pid: server_options.pid, group: server_options.group, id: server_options.id},
@@ -35,7 +37,10 @@ defmodule Membrane.Monitoring.ReconProcessMonitoring do
 
   @impl true
   def handle_info(:collect_process_info, state) do
-    Monitoring.ReconMetrics.monitor_process_info(state.pid, %{group: state.group, id: state.id})
+    MembranePerformanceTest.Monitoring.ReconMetrics.monitor_process_info(state.pid, %{
+      group: state.group,
+      id: state.id
+    })
 
     collect_process_info()
     {:noreply, state}

@@ -1,4 +1,4 @@
-defmodule Monitoring.ReconMetrics do
+defmodule MembranePerformanceTest.Monitoring.ReconMetrics do
   import Telemetry.Metrics
 
   def metrics() do
@@ -75,7 +75,6 @@ defmodule Monitoring.ReconMetrics do
   ]
   """
   def monitor_process_info(pid, tag) do
-    # IO.puts("calling for #{inspect(tag)}")
     metric_tag = %{group: tag.group, id: tag.id}
     info = :recon.info(pid)
     {:binary_memory, binary_memory} = :recon.info(pid, :binary_memory)
@@ -84,70 +83,88 @@ defmodule Monitoring.ReconMetrics do
     gc = Keyword.get(mem_used, :garbage_collection)
     memory = Keyword.get(mem_used, :memory)
     message_queue_len = Keyword.get(mem_used, :message_queue_len)
-    _heap_size = Keyword.get(mem_used, :heap_size)
+    heap_size = Keyword.get(mem_used, :heap_size)
     total_heap_size = Keyword.get(mem_used, :total_heap_size)
-    _min_bin_vheap_size = Keyword.get(gc, :min_bin_vheap_size)
-    _min_heap_size = Keyword.get(gc, :min_heap_size)
-    _fullsweep_after = Keyword.get(gc, :fullsweep_after)
-    _minor_gcs = Keyword.get(gc, :minor_gcs)
+    min_bin_vheap_size = Keyword.get(gc, :min_bin_vheap_size)
+    min_heap_size = Keyword.get(gc, :min_heap_size)
+    fullsweep_after = Keyword.get(gc, :fullsweep_after)
+    minor_gcs = Keyword.get(gc, :minor_gcs)
     reductions = Keyword.get(Keyword.get(info, :work), :reductions)
 
     :telemetry.execute(
-      [:recon, :process, :memory_used, :binary_memory],
+      [:membrane_performance_test, :process, :memory_used, :binary_memory],
       %{value: binary_memory},
       metric_tag
     )
 
-    :telemetry.execute([:recon, :process, :memory_used, :memory], %{value: memory}, metric_tag)
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :memory_used, :memory],
+      %{value: memory},
+      metric_tag
+    )
 
     :telemetry.execute(
-      [:recon, :process, :memory_used, :message_queue_len],
+      [:membrane_performance_test, :process, :memory_used, :message_queue_len],
       %{
         value: message_queue_len
       },
       metric_tag
     )
 
-    # :telemetry.execute(
-    #   [:recon, :process, :memory_used, :heap_size],
-    #   %{value: heap_size},
-    #   metric_tag
-    # )
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :memory_used, :heap_size],
+      %{value: heap_size},
+      metric_tag
+    )
 
     :telemetry.execute(
-      [:recon, :process, :memory_used, :total_heap_size],
+      [:membrane_performance_test, :process, :memory_used, :total_heap_size],
       %{
         value: total_heap_size
       },
       metric_tag
     )
 
-    # :telemetry.execute(
-    #   [:recon, :process, :memory_used, :garbage_collection, :min_bin_vheap_size],
-    #   %{
-    #     value: min_bin_vheap_size
-    #   },
-    #   metric_tag
-    # )
+    :telemetry.execute(
+      [
+        :membrane_performance_test,
+        :process,
+        :memory_used,
+        :garbage_collection,
+        :min_bin_vheap_size
+      ],
+      %{
+        value: min_bin_vheap_size
+      },
+      metric_tag
+    )
 
-    # :telemetry.execute(
-    #   [:recon, :process, :memory_used, :garbage_collection, :min_heap_size],
-    #   %{value: min_heap_size},
-    #   metric_tag
-    # )
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :memory_used, :garbage_collection, :min_heap_size],
+      %{value: min_heap_size},
+      metric_tag
+    )
 
-    # :telemetry.execute(
-    #   [:recon, :process, :memory_used, :garbage_collection, :fullsweep_after],
-    #   %{
-    #     value: fullsweep_after
-    #   },
-    #   metric_tag
-    # )
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :memory_used, :garbage_collection, :fullsweep_after],
+      %{
+        value: fullsweep_after
+      },
+      metric_tag
+    )
 
-    # :telemetry.execute([:recon, :process, :memory_used, :garbage_collection, :minor_gcs], %{
-    #   value: minor_gcs
-    # })
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :memory_used, :garbage_collection, :minor_gcs],
+      %{
+        value: minor_gcs
+      },
+      metric_tag
+    )
 
-    :telemetry.execute([:recon, :process, :work, :reductions], %{value: reductions}, metric_tag)
+    :telemetry.execute(
+      [:membrane_performance_test, :process, :work, :reductions],
+      %{value: reductions},
+      metric_tag
+    )
   end
 end

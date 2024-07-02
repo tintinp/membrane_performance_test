@@ -1,7 +1,7 @@
-defmodule Membrane.TestElement.BufferPushSource do
+defmodule MembranePerformanceTest.Membrane.TestElement.BufferPushSource do
   use Membrane.Source
   alias Membrane.Buffer
-  alias Membrane.Monitoring.ReconProcessMonitoring
+  alias MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
     group: [
@@ -25,7 +25,7 @@ defmodule Membrane.TestElement.BufferPushSource do
   )
 
   def_output_pad(:output,
-    accepted_format: %Membrane.Format.RawBuffer{format: :bytes},
+    accepted_format: %MembranePerformanceTest.Membrane.Format.RawBuffer{format: :bytes},
     flow_control: :push
   )
 
@@ -54,7 +54,11 @@ defmodule Membrane.TestElement.BufferPushSource do
   @impl true
   def handle_playing(_ctx, state) do
     push_buffer(state.push_interval)
-    {[stream_format: {:output, %Membrane.Format.RawBuffer{format: :bytes}}], state}
+
+    {[
+       stream_format:
+         {:output, %MembranePerformanceTest.Membrane.Format.RawBuffer{format: :bytes}}
+     ], state}
   end
 
   def handle_info(:push_buffer, _ctx, state) do

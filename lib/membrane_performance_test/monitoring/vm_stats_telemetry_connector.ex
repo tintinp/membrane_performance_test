@@ -1,14 +1,16 @@
-defmodule Monitoring.VMStatsTelemetryConnector do
+defmodule MembranePerformanceTest.Monitoring.VMStatsTelemetryConnector do
   import Telemetry.Metrics
 
   defmacro __using__(opts) do
     quote do
-      @vmstats_event_to_atom Monitoring.VMStatsTelemetryConnector.__create_event_to_atom_map__(
+      @vmstats_event_to_atom MembranePerformanceTest.Monitoring.VMStatsTelemetryConnector.__create_event_to_atom_map__(
                                unquote(opts)
                              )
 
       def metrics() do
-        Monitoring.VMStatsTelemetryConnector.__create_telemetry_functions__(unquote(opts))
+        MembranePerformanceTest.Monitoring.VMStatsTelemetryConnector.__create_telemetry_functions__(
+          unquote(opts)
+        )
       end
     end
   end

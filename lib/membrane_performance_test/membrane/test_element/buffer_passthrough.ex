@@ -1,5 +1,5 @@
-defmodule Membrane.TestElement.BufferPassthrough do
-  alias Membrane.Monitoring.ReconProcessMonitoring
+defmodule MembranePerformanceTest.Membrane.TestElement.BufferPassthrough do
+  alias MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring
   alias Membrane.Logger
   use Membrane.Filter
 

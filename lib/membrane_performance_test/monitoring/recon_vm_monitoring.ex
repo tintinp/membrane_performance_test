@@ -1,4 +1,4 @@
-defmodule Monitoring.ReconVmMonitoring do
+defmodule MembranePerformanceTest.Monitoring.ReconVmMonitoring do
   use GenServer
 
   @interval Application.compile_env(
@@ -19,7 +19,7 @@ defmodule Monitoring.ReconVmMonitoring do
   end
 
   def handle_info(:collect_memory, state) do
-    Monitoring.ReconMetrics.monitor_memory()
+    MembranePerformanceTest.Monitoring.ReconMetrics.monitor_memory()
     collect_memory()
     {:noreply, state}
   end

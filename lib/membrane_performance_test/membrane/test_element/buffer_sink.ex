@@ -1,6 +1,6 @@
-defmodule Membrane.TestElement.BufferSink do
+defmodule MembranePerformanceTest.Membrane.TestElement.BufferSink do
   use Membrane.Sink
-  alias Membrane.Monitoring.ReconProcessMonitoring
+  alias MembranePerformanceTest.Membrane.Monitoring.ReconProcessMonitoring
 
   def_options(
     group: [

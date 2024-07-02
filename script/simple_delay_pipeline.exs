@@ -1,3 +1,3 @@
 defmodule SimpleDelayPipeline do
-  Membrane.Pipeline.SimpleDelay.start_link(nil)
+  MembranePerformanceTest.Membrane.Pipeline.SimpleDelay.start_link(nil)
 end

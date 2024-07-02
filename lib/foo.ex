@@ -37,7 +37,10 @@ defmodule Foo do
   end
 
   def handle_info(:collect_process_info, state) do
-    Monitoring.ReconMetrics.monitor_process_info(self(), %{group: "Foo", id: "foo_1"})
+    MembranePerformanceTest.Monitoring.ReconMetrics.monitor_process_info(self(), %{
+      group: "Foo",
+      id: "foo_1"
+    })
 
     collect_process_info()
     {:noreply, state}

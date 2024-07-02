@@ -1,4 +1,4 @@
-defmodule Monitoring.VMStatsSink do
+defmodule MembranePerformanceTest.Monitoring.VMStatsSink do
   @behaviour :vmstats_sink
 
   @gauge_events [
@@ -25,7 +25,7 @@ defmodule Monitoring.VMStatsSink do
     "vmstats.reductions"
   ]
 
-  use Monitoring.VMStatsTelemetryConnector,
+  use MembranePerformanceTest.Monitoring.VMStatsTelemetryConnector,
     gauge_events: @gauge_events,
     counter_events: [],
     timing_events: []
