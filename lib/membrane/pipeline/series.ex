@@ -17,10 +17,10 @@ defmodule Membrane.Pipeline.Series do
       })
     ]
 
-    filters = create_filter(options.filter_count)
+    filters = create_filter(options.series_count)
 
     sink = [
-      get_child({:buffer_filter, options.filter_count})
+      get_child({:buffer_filter, options.series_count})
       |> child(:buffer_sink, %Membrane.TestElement.BufferSink{
         group: "Sink",
         id: "1",

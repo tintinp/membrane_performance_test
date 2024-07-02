@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -50,7 +50,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*)"
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.value.PushSource.*)"
             },
             "properties": [
               {
@@ -62,7 +62,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*)"
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.Filter.*)"
             },
             "properties": [
               {
@@ -74,12 +74,24 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*)"
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.Sink.*)"
             },
             "properties": [
               {
                 "id": "displayName",
                 "value": "Sink"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.value.Passthrough.*)"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": "Passthrough"
               }
             ]
           }
@@ -91,7 +103,7 @@
         "x": 0,
         "y": 0
       },
-      "id": 10,
+      "id": 11,
       "options": {
         "minVizHeight": 75,
         "minVizWidth": 75,
@@ -117,7 +129,17 @@
           "hide": false,
           "refCount": 0,
           "refId": "B",
-          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*))"
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.value.PushSource.*))"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "bdqcyqfab1dz4b"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "D",
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.value.Passthrough.*))"
         },
         {
           "datasource": {
@@ -127,7 +149,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "A",
-          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*))"
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.Filter.*))"
         },
         {
           "datasource": {
@@ -137,7 +159,7 @@
           "hide": false,
           "refCount": 0,
           "refId": "C",
-          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*))"
+          "target": "countSeries(removeEmptySeries(stats.gauges.recon.process.memory_used.binary_memory.*.Sink.*))"
         }
       ],
       "title": "Element Count",
@@ -151,7 +173,7 @@
                   "id": "isNull",
                   "options": {}
                 },
-                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferFilter.*)"
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.Filter.*)"
               }
             ],
             "match": "any",
@@ -167,7 +189,7 @@
                   "id": "isNull",
                   "options": {}
                 },
-                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferPushSource.*)"
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.PushSource.*)"
               }
             ],
             "match": "any",
@@ -183,7 +205,7 @@
                   "id": "isNull",
                   "options": {}
                 },
-                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.BufferSink.*)"
+                "fieldName": "countSeries(stats.gauges.recon.process.memory_used.binary_memory.*.Sink.*)"
               }
             ],
             "match": "any",
@@ -209,7 +231,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -313,7 +335,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -448,7 +470,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -533,7 +555,8 @@
           },
           "refCount": 0,
           "refId": "A",
-          "target": "stats.gauges.vmstats.memory.binary.value"
+          "target": "stats.gauges.vmstats.memory.binary.value",
+          "textEditor": false
         }
       ],
       "title": "VM Binary Memory",
@@ -542,7 +565,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -636,7 +659,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -749,7 +772,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -869,7 +892,7 @@
     {
       "datasource": {
         "type": "graphite",
-        "uid": "bdqcyqfab1dz4b"
+        "uid": "bdqj6475ygao0f"
       },
       "fieldConfig": {
         "defaults": {
@@ -987,6 +1010,6 @@
   "timezone": "browser",
   "title": "VM Stats",
   "uid": "edqd0g10p5khsb",
-  "version": 7,
+  "version": 5,
   "weekStart": ""
 }

@@ -11,9 +11,10 @@ defmodule MembranePerformanceTestApplication do
       {Task.Supervisor, name: ReconMonitoring.TaskSupervisor},
       {Monitoring.ReconVmMonitoring, name: Monitoring.ReconVmMonitoring},
       # Membrane.Pipeline.Simple
-      # {Membrane.Pipeline.Series, %{filter_count: 100}}
-      {Membrane.Pipeline.Parallel,
-       %{parallel_count: 10, source_push_interval: 12, buffer_size: floor(4.5 * 1024)}}
+      {Membrane.Pipeline.Series,
+       %{series_count: 1000, source_push_interval: 12, buffer_size: floor(4.5 * 1024)}}
+      # {Membrane.Pipeline.Parallel,
+      #  %{parallel_count: 10, source_push_interval: 12, buffer_size: floor(4.5 * 1024)}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
